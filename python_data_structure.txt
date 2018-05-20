@@ -1,0 +1,238 @@
+# range(n)
+returns a list from 0 to n-1
+range(3) == [0, 1, 2]
+
+>>> # One parameter
+>>> for i in range(5):
+...     print(i)
+...
+0
+1
+2
+3
+4
+>>> # Two parameters
+>>> for i in range(3, 6):
+...     print(i)
+...
+3
+4
+5
+>>> # Three parameters
+>>> for i in range(4, 10, 2):
+...     print(i)
+...
+4
+6
+8
+>>> # Going backwards
+>>> for i in range(0, -10, -2):
+...     print(i)
+...
+0
+-2
+-4
+-6
+-8
+
+>>> my_list = ['one', 'two', 'three', 'four', 'five']
+>>> my_list_len = len(my_list)
+>>> for i in range(0, my_list_len):
+...     print(my_list[i])
+...
+one
+two
+three
+four
+five
+
+# create an empty list with []
+list = []
+for i in range(10):
+    list.append(i**2)
+
+print(list)
+
+list = [i**2 for i in range(10)]
+
+fruits = ['orange', 'apple', 'pear', 'banana', 'kiwi', 'apple', 'banana']
+print(len(fruits))
+print(fruits.index('banana'))
+fruits.reverse()
+print(fruits)
+print(fruits.count('banana'))
+fruits.append('grape')
+print(fruits)
+fruits.sort()
+print(fruits)
+fruits.insert(1,'omi')
+print(fruits)
+
+# remove only first appearance of this object
+fruits.remove('apple')
+print(fruits)
+
+
+# create an empty set with set()
+# no duplicate element, and nor ordering among elements
+# set = {} will create an empty dict
+set = set()
+set.add(3)
+set.add(5)
+set.add(7)
+set.add(5)
+print(set)
+
+set1 = {4,6,4,7,6,9}
+print(set1)
+print(len(set1))
+print(4 in set1)
+
+
+# diff between json and python dict
+# json only has string as keys, whereas dict may have other objects as keys
+
+# [] creates an empty dict, not set
+dict = {}
+dict['omi'] = 104
+dict['akash'] = 73
+dict['ratul'] = 43
+
+dict2 = {'a':12,'b':17,'c':20}
+print(dict2)
+dict2['d'] = 12
+
+print(dict['omi'])
+
+print(dict2)
+
+# deleting dict
+#dict.clear() # remove all entries in dict
+#del dict # delete the whole dict
+
+
+# returns a set of keys...cause no duplicate keys
+print(dict.keys())
+keys = dict.keys();
+
+# tuple
+
+A tuple is a sequence of immutable Python objects. Tuples are sequences, just like lists.
+The differences between tuples and lists are, the tuples cannot be changed unlike lists and tuples use parentheses,
+whereas lists use square brackets.
+
+Creating a tuple is as simple as putting different comma-separated values. Optionally you can put these comma-separated values between parentheses also. For example −
+
+tup1 = ('physics', 'chemistry', 1997, 2000);
+tup2 = (1, 2, 3, 4, 5 );
+tup3 = "a", "b", "c", "d";
+The empty tuple is written as two parentheses containing nothing −
+
+tup1 = ();
+To write a tuple containing a single value you have to include a comma, even though there is only one value −
+
+tup1 = (50,);
+Like string indices, tuple indices start at 0, and they can be sliced, concatenated, and so on.
+
+Accessing Values in Tuples
+To access values in tuple, use the square brackets for slicing along with the index or indices to obtain value available at that index. For example −
+
+#!/usr/bin/python
+
+tup1 = ('physics', 'chemistry', 1997, 2000);
+tup2 = (1, 2, 3, 4, 5, 6, 7 );
+print "tup1[0]: ", tup1[0];
+print "tup2[1:5]: ", tup2[1:5];
+When the above code is executed, it produces the following result −
+
+tup1[0]:  physics
+tup2[1:5]:  (2, 3, 4, 5)
+
+Updating Tuples
+Tuples are immutable which means you cannot update or change the values of tuple elements. You are able to take portions of existing tuples to create new tuples as the following example demonstrates −
+
+#!/usr/bin/python
+
+tup1 = (12, 34.56);
+tup2 = ('abc', 'xyz');
+
+# Following action is not valid for tuples
+# tup1[0] = 100;
+
+# So let's create a new tuple as follows
+tup3 = tup1 + tup2;
+print tup3;
+When the above code is executed, it produces the following result −
+
+(12, 34.56, 'abc', 'xyz')
+
+Delete Tuple Elements
+Removing individual tuple elements is not possible. There is, of course, nothing wrong with putting together another tuple with the undesired elements discarded.
+
+To explicitly remove an entire tuple, just use the del statement. For example −
+
+#!/usr/bin/python
+
+tup = ('physics', 'chemistry', 1997, 2000);
+print tup;
+del tup;
+print "After deleting tup : ";
+print tup;
+This produces the following result. Note an exception raised, this is because after del tup tuple does not exist any more −
+
+('physics', 'chemistry', 1997, 2000)
+After deleting tup :
+Traceback (most recent call last):
+   File "test.py", line 9, in <module>
+      print tup;
+NameError: name 'tup' is not defined
+
+Python Expression	Results	Description
+len((1, 2, 3))	3	Length
+(1, 2, 3) + (4, 5, 6)	(1, 2, 3, 4, 5, 6)	Concatenation
+('Hi!',) * 4	('Hi!', 'Hi!', 'Hi!', 'Hi!')	Repetition
+3 in (1, 2, 3)	True	Membership
+for x in (1, 2, 3): print x,	1 2 3	Iteration
+
+# string
+Assume string variable a holds 'Hello' and variable b holds 'Python', then −
+
+[]	Slice - Gives the character from the given index	a[1] will give e
+[ : ]	Range Slice - Gives the characters from the given range	a[1:4] will give ell
+in	Membership - Returns true if a character exists in the given string	H in a will give 1
+not in	Membership - Returns true if a character does not exist in the given string	M not in a will give 1
+
+String Formatting Operator
+One of Python's coolest features is the string format operator %. This operator is unique to strings and makes up for the pack of having functions from C's printf() family. Following is a simple example −
+
+#!/usr/bin/python
+
+print("My name is %s and weight is %d kg!" % ('Zara', 21))
+When the above code is executed, it produces the following result −
+
+My name is Zara and weight is 21 kg!
+
+#Triple Quotes
+Python's triple quotes comes to the rescue by allowing strings to span multiple lines, including verbatim NEWLINEs, TABs, and any other special characters.
+
+The syntax for triple quotes consists of three consecutive single or double quotes.
+
+#!/usr/bin/python
+
+para_str = """this is a long string that is made up of
+several lines and non-printable characters such as
+TAB ( \t ) and they will show up that way when displayed.
+NEWLINEs within the string, whether explicitly given like
+this within the brackets [ \n ], or just a NEWLINE within
+the variable assignment will also show up.
+"""
+print para_str
+When the above code is executed, it produces the following result. Note how every single special character has been converted to its printed form, right down to the last NEWLINE at the end of the string between the "up." and closing triple quotes. Also note that NEWLINEs occur either with an explicit carriage return at the end of a line or its escape code (\n) −
+
+this is a long string that is made up of
+several lines and non-printable characters such as
+TAB (    ) and they will show up that way when displayed.
+NEWLINEs within the string, whether explicitly given like
+this within the brackets [
+ ], or just a NEWLINE within
+the variable assignment will also show up.
