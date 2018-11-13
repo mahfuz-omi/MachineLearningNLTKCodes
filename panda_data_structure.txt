@@ -1,4 +1,4 @@
-# series(index+list)
+# series(index+list/values=per index a single data...which is a value)
 import pandas as pd
 series = pd.Series([1,3,5,7],index=[1,2,3,4])
 
@@ -8,10 +8,13 @@ series = pd.Series([1,3,5,7],index=[1,2,3,4])
 3 5
 4 7
 
-series.values = pure python list = [1,3,5,7] = y values
-series.index = pure python list = [1,2,3,4] = x values
+series.values =  [1 3 5 7] = y values(numpy array)
+series.index =  [1 2 3 4] = x values
 
-# data frame = multiple series wuth single index
+# data frame = multiple series wuth single index(per index e single data which is a series)[index + series(per index)]
+
+# series.values = numpy 1d array, df.values = numpy 2d array
+
 
 df = pd.read_csv("sales_data_types.csv")
     Customer Number	Customer Name	2016	2017	Percent Growth	Jan Units	Month	Day	Year	Active
@@ -31,8 +34,8 @@ df['Month'] will return a series(index+list)
 3 $350,000.00
 4 $15,000.00
 
-df['Month'].values will return the list
-[$125,000.00,$920,000.00,....]
+df['Month'].values will return(not list, no comma between elements)
+[$125,000.00 $920,000.00....]
 
 df['2016'] + df['2017']
 0      $125,000.00$162500.00
@@ -56,3 +59,276 @@ df['Customer Number'].astype('int')
 3     24900
 4    651029
 Name: Customer Number, dtype: int64
+
+# dataframe funny things
+df = pd.read_csv('data.csv')
+print(df)
+
+    id  name  age
+0   1      omi   28
+1   2   shakil   25
+2   3    nipun   27
+3   4     anik   28
+4   5  joyeeta   21
+
+# index column auto added
+
+df = pd.read_csv('data.csv',index_col=0)
+print(df)
+
+        name  age
+id
+1       omi   28
+2    shakil   25
+3     nipun   27
+4      anik   28
+5   joyeeta   21
+
+here column id(index=0) has been used as index column
+
+series.values = data without index
+dataframe.values = data without index
+
+
+df = pd.read_csv('data.csv')
+print(df)
+
+print(df.values)
+
+    id     name  age
+0   1      omi   28
+1   2   shakil   25
+2   3    nipun   27
+3   4     anik   28
+4   5  joyeeta   21
+
+[[1 'omi' 28]
+ [2 'shakil' 25]
+ [3 'nipun' 27]
+ [4 'anik' 28]
+ [5 'joyeeta' 21]]
+
+print(df.values[0])
+
+# print first(0)
+[1 'omi' 28]
+
+print(df.values[0][0])
+1
+
+print(df.values[0][1])
+'omi'
+
+df = df.values[0:4]
+print(df)
+
+[[1 'omi' 28]
+ [2 'shakil' 25]
+ [3 'nipun' 27]
+ [4 'anik' 28]]
+
+# cropping a dataframe
+df = df.values[0:3,0:1] (from df.values, take row 0 to 2 and column from 0 to 0)
+print(df)
+
+[[1]
+ [2]
+ [3]]
+
+df = df.values[0:3,0:2]
+print(df)
+
+[[1 'omi']
+ [2 'shakil']
+ [3 'nipun']]
+
+# only df is not sliceable, but df.values are, series is
+df[0:3] == df isn't sliceable
+
+print(df.values[:,1]) (take the column 1=name for all rows(:))
+['omi' 'shakil' 'nipun' 'anik' 'joyeeta'] != list cause no comma separation
+
+print(df.values[:,1][0]) (take the first value after taking the column 1=name for all rows(:))
+'omi'
+
+# df['column1'] = series1
+# df['column2'] = series2
+
+# df[['column1','column2']] == a cropped data frame where only column1 and column2 are selected
+    column1  column2
+0
+1
+1
+
+# convert categorical data into dummy indicators(1 hot encoding)
+
+# get_dummies(series) = a dataframe
+
+0   male
+1   female
+2   male
+3   male
+4   female
+
+pd.get_dummies(series) = a dataframe
+    male    female
+0    1      0
+1    0      1
+2    1      0
+3    1      0
+4    0      1
+
+# concat multiple dataframe to get a single dataframe w.r.t same index
+pd.concat([df1,df2,df3])
+
+# values are of 2 types
+1) DataFrame values(usually denoted by X= 2D values= [[]])= usually taken as X values
+2) Series values (usually denoted by y=1D values = []) = usually taken as y values
+
+model.fit(dataFrame values,series values)
+
+# iloc
+# integer numbering of rows and columns
+iloc_df = df.iloc( [list of rows-0,1,4]  , [list of columns-0,1,2,3]   )
+
+There are two “arguments” to iloc – a row selector, and a column selector.  For example:
+
+# Single selections using iloc and DataFrame
+# Rows:
+data.iloc[0] # first row of data frame (Aleshia Tomkiewicz) - Note a Series data type output.
+data.iloc[1] # second row of data frame (Evan Zigomalas)
+data.iloc[-1] # last row of data frame (Mi Richan)
+# Columns:
+data.iloc[:,0] # first column of data frame (first_name)
+data.iloc[:,1] # second column of data frame (last_name)
+data.iloc[:,-1] # last column of data frame (id)
+view rawPandas Index - Single iloc selections.py hosted with ❤ by GitHub
+Multiple columns and rows can be selected together using the .iloc indexer.
+
+# Multiple row and column selections using iloc and DataFrame
+data.iloc[0:5] # first five rows of dataframe
+data.iloc[:, 0:2] # first two columns of data frame with all rows
+data.iloc[[0,3,6,24], [0,5,6]] # 1st, 4th, 7th, 25th row + 1st 6th 7th columns.
+data.iloc[0:5, 5:8] # first 5 rows and 5th, 6th, 7th columns of data frame (county -> phone1).
+
+# df.iloc[0][0] => first column value of the first row of data
+
+Selecting pandas data using “loc”
+The Pandas loc indexer can be used with DataFrames for two different use cases:
+
+a.) Selecting rows by label/index
+b.) Selecting rows with a boolean / conditional lookup
+The loc indexer is used with the same syntax as iloc: data.loc[<row selection>, <column selection>] .
+
+2a. Label-based / Index-based indexing using .loc
+Selections using the loc method are based on the index of the data frame (if any). Where the index is set on a DataFrame, using <code>df.set_index()</code>, the .loc method directly selects based on index values of any rows. For example, setting the index of our test data frame to the persons “last_name”:
+
+data.set_index("last_name", inplace=True)
+data.head()
+view rawPandas Index - Setting index for iloc.py hosted with ❤ by GitHub
+Pandas Dataframe with index set using .set_index() for .loc[] explanation.
+Last Name set as Index set on sample data frame
+
+Now with the index set, we can directly select rows for different “last_name” values using .loc[<label>]  – either singly, or in multiples. For example:
+.loc is used by pandas for label based lookups in dataframes
+Selecting single or multiple rows using .loc index selections with pandas. Note that the first example returns a series, and the second returns a DataFrame. You can achieve a single-column DataFrame by passing a single-element list to the .loc operation.
+
+Select columns with .loc using the names of the columns. In most of my data work, typically I have named columns, and use these named selections.
+
+selecting columns by name in pandas .loc
+When using the .loc indexer, columns are referred to by names using lists of strings, or “:” slices.
+
+You can select ranges of index labels – the selection </code>data.loc[‘Bruch’:’Julio’]</code> will return all rows in the data frame between the index entries for “Bruch” and “Julio”. The following examples should now make sense:
+
+
+# Select rows with index values 'Andrade' and 'Veness', with all columns between 'city' and 'email'
+data.loc[['Andrade', 'Veness'], 'city':'email']
+# Select same rows, with just 'first_name', 'address' and 'city' columns
+data.loc['Andrade':'Veness', ['first_name', 'address', 'city']]
+
+# Change the index to be based on the 'id' column
+data.set_index('id', inplace=True)
+# select the row with 'id' = 487
+data.loc[487]
+view rawPandas Index - Select rows with loc.py hosted with ❤ by GitHub
+Note that in the last example, data.loc[487] (the row with index value 487) is not equal to data.iloc[487] (the 487th row in the data). The index of the DataFrame can be out of numeric order, and/or a string or multi-value.
+
+2b. Boolean / Logical indexing using .loc
+Conditional selections with boolean arrays using data.loc[<selection>] is the most common method that I use with Pandas DataFrames. With boolean indexing or logical selection, you pass an array or Series of True/False values to the .loc indexer to select the rows where your Series has True values.
+
+In most use cases, you will make selections based on the values of different columns in your data set.
+
+For example, the statement data[‘first_name’] == ‘Antonio’] produces a Pandas Series with a True/False value for every row in the ‘data’ DataFrame, where there are “True” values for the rows where the first_name is “Antonio”. These type of boolean arrays can be passed directly to the .loc indexer as so:
+
+The .loc indexer can accept boolean arrays to select rows
+Using a boolean True/False series to select rows in a pandas data frame – all rows with first name of “Antonio” are selected.
+
+As before, a second argument can be passed to .loc to select particular columns out of the data frame. Again, columns are referred to by name for the loc indexer and can be a single string, a list of columns, or a slice “:” operation.
+
+Multiple column selection example using .loc
+Selecting multiple columns with loc can be achieved by passing column names to the second argument of .loc[]
+
+Note that when selecting columns, if one column only is selected, the .loc operator returns a Series. For a single column DataFrame, use a one-element list to keep the DataFrame format, for example:
+.loc returning Series or DataFrames depending on selection
+If selections of a single column are made as a string, a series is returned from .loc. Pass a list to get a DataFrame back.
+
+Make sure you understand the following additional examples of .loc selections for clarity:
+
+
+# Select rows with first name Antonio, # and all columns between 'city' and 'email'
+data.loc[data['first_name'] == 'Antonio', 'city':'email']
+
+# Select rows where the email column ends with 'hotmail.com', include all columns
+data.loc[data['email'].str.endswith("hotmail.com")]
+
+# Select rows with last_name equal to some values, all columns
+data.loc[data['first_name'].isin(['France', 'Tyisha', 'Eric'])]
+
+# Select rows with first name Antonio AND hotmail email addresses
+data.loc[data['email'].str.endswith("gmail.com") & (data['first_name'] == 'Antonio')]
+
+# select rows with id column between 100 and 200, and just return 'postal' and 'web' columns
+data.loc[(data['id'] > 100) & (data['id'] <= 200), ['postal', 'web']]
+
+# A lambda function that yields True/False values can also be used.
+# Select rows where the company name has 4 words in it.
+data.loc[data['company_name'].apply(lambda x: len(x.split(' ')) == 4)]
+
+# Selections can be achieved outside of the main .loc for clarity:
+# Form a separate variable with your selections:
+idx = data['company_name'].apply(lambda x: len(x.split(' ')) == 4)
+# Select only the True values in 'idx' and only the 3 columns specified:
+data.loc[idx, ['email', 'first_name', 'company']]
+view rawPandas index - loc selection examples.py hosted with ❤ by GitHub
+Logical selections and boolean Series can also be passed to the generic [] indexer of a pandas DataFrame and will give the same results: data.loc[data[‘id’] == 9] == data[data[‘id’] == 9] .
+
+3. Selecting pandas data using ix
+Note: The ix indexer has been deprecated in recent versions of Pandas, starting with version 0.20.1.
+
+The ix[] indexer is a hybrid of .loc and .iloc. Generally, ix is label based and acts just as the .loc indexer. However, .ix also supports integer type selections (as in .iloc) where passed an integer. This only works where the index of the DataFrame is not integer based. ix will accept any of the inputs of .loc and .iloc.
+
+Slightly more complex, I prefer to explicitly use .iloc and .loc to avoid unexpected results.
+
+As an example:
+
+
+# ix indexing works just the same as .loc when passed strings
+data.ix[['Andrade']] == data.loc[['Andrade']]
+# ix indexing works the same as .iloc when passed integers.
+data.ix[[33]] == data.iloc[[33]]
+
+# ix only works in both modes when the index of the DataFrame is NOT an integer itself.
+view rawPandas index - ix selections.py hosted with ❤ by GitHub
+
+
+Setting values in DataFrames using .loc
+With a slight change of syntax, you can actually update your DataFrame in the same statement as you select and filter using .loc indexer. This particular pattern allows you to update values in columns depending on different conditions. The setting operation does not make a copy of the data frame, but edits the original data.
+
+As an example:
+
+# Change the first name of all rows with an ID greater than 2000 to "John"
+data.loc[data['id'] > 2000, "first_name"] = "John"
+
+# Change the first name of all rows with an ID greater than 2000 to "John"
+data.loc[data['id'] > 2000, "first_name"] = "John"
+view rawPandas index - changing data with loc.py hosted with ❤ by GitHub

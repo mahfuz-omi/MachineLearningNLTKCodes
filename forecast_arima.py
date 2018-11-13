@@ -3,7 +3,7 @@ import warnings
 from sklearn.metrics import mean_squared_error
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.seasonal import seasonal_decompose
-import pandas as pd
+import pandas_test as pd
 import matplotlib.pyplot as plt
 import patsy
 import numpy as np

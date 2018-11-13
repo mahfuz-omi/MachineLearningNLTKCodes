@@ -34,7 +34,7 @@ plt.show()
 # run the cluster algm for cluster no = 4
 # feature scaling is needed, but not done here, left for another day
 
-kmeans = KMeans(4)
+kmeans = KMeans(n_clusters=4)
 kmeans.fit(df)
 print(kmeans.cluster_centers_)
 print(kmeans.labels_)

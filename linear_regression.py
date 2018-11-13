@@ -29,3 +29,7 @@ resultY = linearRegression.predict(pd.Series([15,16,17,18,19,20]))
 plt.scatter([15,16,17,18,19,20],resultY.values)
 plt.show()
 
+
+print(linearRegression.intercept_)
+print(linearRegression.coef_)
+

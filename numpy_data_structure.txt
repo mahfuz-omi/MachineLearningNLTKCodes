@@ -50,3 +50,9 @@ float64
 (3, 2)
 Rows: 3
 Cols: 2
+
+List(python) : [1,5,7,9] // comma separated
+array(numpy,as there is no array data structure in raw python): [1 5 7 9] // space separated
+
+a.dtype = the data type of each element of a
+type(a) = the data type of a = the corresponding class of a

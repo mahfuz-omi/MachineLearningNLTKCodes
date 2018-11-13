@@ -1,0 +1,46 @@
+
+# sklearn approach
+
+    Class label	    Alcohol	    Malic acid
+0	    1	            14.23	1.71
+1	    1	            13.20	1.78
+2	    1	            13.16	2.36
+3	    1	            14.37	1.95
+4	    1	            13.24	2.59
+As we can see in the table above, the features Alcohol (percent/volumne) and Malic acid (g/l) are measured on different scales, so that Feature Scaling is necessary important prior to any comparison or combination of these data.
+
+Standardization and Min-Max scaling
+from sklearn import preprocessing
+
+std_scale = preprocessing.StandardScaler().fit(df[['Alcohol', 'Malic acid']])
+df_std = std_scale.transform(df[['Alcohol', 'Malic acid']])
+
+minmax_scale = preprocessing.MinMaxScaler().fit(df[['Alcohol', 'Malic acid']])
+df_minmax = minmax_scale.transform(df[['Alcohol', 'Malic acid']])
+
+
+# Standardization
+# raw python approach
+
+x = [1,4,5,6,6,2,3]
+mean = sum(x)/len(x)
+std_dev = (1/len(x) * sum([ (x_i - mean)**2 for x_i in x]))**0.5
+
+z_scores = [(x_i - mean)/std_dev for x_i in x]
+
+# Min-Max scaling
+
+minmax = [(x_i - min(x)) / (max(x) - min(x)) for x_i in x]
+
+# Numpy approach
+NumPy
+import numpy as np
+
+# Standardization
+
+x_np = np.asarray(x)
+z_scores_np = (x_np - x_np.mean()) / x_np.std()
+
+# Min-Max scaling
+
+np_minmax = (x_np - x_np.min()) / (x_np.max() - x_np.min())

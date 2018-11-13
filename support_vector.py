@@ -1,3 +1,3 @@
 import matplotlib.pyplot as plt
-import pandas as pd
+import pandas_test as pd
 import numpy as np

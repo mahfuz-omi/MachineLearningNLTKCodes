@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas_test as pd
 import matplotlib.pyplot as plt
 import scipy
 data = pd.read_csv('AirPassengers.csv')

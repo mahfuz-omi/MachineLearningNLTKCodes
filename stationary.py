@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas_test as pd
 import matplotlib.pyplot as plt
 import patsy
 

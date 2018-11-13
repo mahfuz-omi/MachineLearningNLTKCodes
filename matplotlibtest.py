@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import pandas as pd
+import pandas_test as pd
 #plt.plot([1,2,3,4,5])
 
 data = pd.read_csv('data.csv')

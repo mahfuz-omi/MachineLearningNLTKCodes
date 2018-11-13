@@ -67,7 +67,7 @@ keys = dict.keys();
 
 
 # pandas series
-import pandas as pd
+import pandas_test as pd
 series1 = pd.Series([1,3,5,7],index=[1,2,3,4])
 # the index isn't a part of the data
 # so, the data is one dimensional

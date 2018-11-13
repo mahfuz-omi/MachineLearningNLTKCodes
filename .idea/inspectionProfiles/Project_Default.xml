@@ -6,6 +6,7 @@
         <list>
           <option value="forecast_arima.train_size" />
           <option value="forecast_arima.X" />
+          <option value="classification.a" />
         </list>
       </option>
     </inspection_tool>

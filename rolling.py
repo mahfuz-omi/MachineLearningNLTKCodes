@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas_test as pd
 import matplotlib.pyplot as plt
 
 data = [3.0, 20.0, 50.0, 104.0,172.0,252.0,350.0]
